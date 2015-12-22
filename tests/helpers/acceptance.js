@@ -313,7 +313,16 @@ function handleResult(result) {
   throw result;
 }
 
+function runEmberCommand(command, _args) {
+  var emberCLIPath = path.join(__dirname, '../../node_modules/ember-cli/', 'bin', 'ember');
+
+  var args = [emberCLIPath, command].concat(_args);
+
+  return runCommand.apply(null, args);
+}
+
 module.exports = {
   createApp: createApp,
-  copyFixtureFiles: copyFixtureFiles
+  copyFixtureFiles: copyFixtureFiles,
+  runEmberCommand: runEmberCommand
 };
