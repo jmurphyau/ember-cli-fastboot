@@ -3,8 +3,9 @@
 
 var _ = require('lodash');
 
-var FastBootMode = require('./lib/addon-modes/fastboot');
-var BrowserMode  = require('./lib/addon-modes/browser');
+var FastBootMode       = require('./lib/addon-modes/fastboot');
+var BrowserMode        = require('./lib/addon-modes/browser');
+var FastBootAtBootMode = require('./lib/addon-modes/fastboot-at-boot');
 
 var ENV_KEY      = 'EMBER_CLI_FASTBOOT';
 var APP_NAME_KEY = 'EMBER_CLI_FASTBOOT_APP_NAME';
@@ -39,6 +40,8 @@ module.exports = {
       app.options.autoRun = false;
 
       mode = FastBootMode;
+    } else if (app.options.fastBootAtBoot) {
+      mode = FastBootAtBootMode;
     } else {
       mode = BrowserMode;
     }
